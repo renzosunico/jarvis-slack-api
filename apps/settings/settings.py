@@ -22,7 +22,8 @@ DJANGO_APPS = [
 ]
 
 APPS = [
-    'core'
+    'core',
+    'food'
 ]
 
 THIRD_PARTY_APPS = [
@@ -95,3 +96,16 @@ STATIC_ROOT = str(BASE_DIR.path('static'))
 STATICFILES_DIRS = [
     str(BASE_DIR.path('assets'))
 ]
+
+AUTH_USER_MODEL = 'core.User'
+
+SLACK_TOKENS = env('SLACK_TOKENS').split("|")
+
+DEFAULT_CHARSET = 'utf-8'
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
