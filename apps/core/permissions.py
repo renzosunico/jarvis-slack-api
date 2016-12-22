@@ -12,7 +12,6 @@ class SlackTokenPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         """Check token in request."""
         if request.method.upper() == "POST":
-            print request.data
             token = request.data.get("token")
             if token not in settings.SLACK_TOKENS:
                 return False
