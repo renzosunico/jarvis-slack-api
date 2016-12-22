@@ -18,4 +18,4 @@ class JarvisAPIView(APIView):
         """Handles POST response of Jarvis."""
         jarvis = Jarvis(request=request)
         jarvis.create_response()
-        #return Response({'success': True, 'message': 'Request received.'})
+        return Response(status=status.HTTP_204_NO_CONTENT)
