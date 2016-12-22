@@ -67,7 +67,5 @@ class JarvisResponse(object):
 
     def send(self):
         """Post response to url."""
-        headers = {'content-type': 'application/json'}
-        response = requests.post(url=self.url, headers=headers,
-            data=json.dumps(self.response))
+        response = requests.post(url=self.url, data=self.response)
         print response.__dict__
