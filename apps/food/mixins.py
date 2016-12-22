@@ -42,7 +42,7 @@ class FoodServiceMixins(object):
         food = food.first().food if food else None
         message = "{0} found this menu for {1}, {2}.".format(user,
             category, food)
-        message = message if food else "The menu is empty.".
+        message = message if food else "The menu is empty."
         return message, []
 
     def get_relative_food(self, **kwargs):
@@ -69,5 +69,5 @@ class FoodServiceMixins(object):
         food = food.first().food if food else None
         message = "{0} found this menu for {1}, {2}.".format(user,
             category, food)
-        message = message if food else "The menu is empty.".
+        message = message if food else "The menu is empty."
         return message, []
