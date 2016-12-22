@@ -1,0 +1,23 @@
+{
+    "GET_BREAKFAST": {
+        "keywords": ["breakfast", "almusal", "agahan"],
+        "function": "get_food",
+        "requireds": ["ano", "what"],
+        "params": {
+            "category": "breakfast"
+        }
+    },
+    "GET_LUNCH": {
+        "keywords": ["tanghalian", "lunch"],
+        "function": "get_food",
+        "requireds": ["ano", "what"],
+        "params": {
+            "category": "lunch"
+        }
+    },
+    "GET_FOOD": {
+        "keywords": ["food", "pagkain", "ulam"],
+        "function": "get_relative_food",
+        "requireds": ["ano", "what"]
+    }
+}

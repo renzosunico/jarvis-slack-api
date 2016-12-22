@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from jarvis.brain import Jarvis
+
 from .authentications import SlackTokenAuthentication
 
 
@@ -14,5 +16,6 @@ class JarvisAPIView(APIView):
 
     def post(self, request, format=None):
         """Handles POST response of Jarvis."""
-        print request.user.username
-        return Response({'success': True})
+        jarvis = Jarvis(request=request)
+        jarvis.create_response()
+        return Response({'success': True, 'message': 'Request received.'})
