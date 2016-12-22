@@ -39,10 +39,10 @@ class FoodServiceMixins(object):
                 category=category)
 
         user = self.request.user.username
-        message = food.first().food
-        message = message if message else "There's no available {0}.".format(
-            category)
-        message = "<@{0}>, found this intel, ```{1}```".format(user, message)
+        food = food.first().food if food else None
+        message = "{0} found this menu for {1}, {2}.".format(user,
+            category, food)
+        message = message if food else "The menu is empty.".
         return message, []
 
     def get_relative_food(self, **kwargs):
@@ -66,8 +66,8 @@ class FoodServiceMixins(object):
                 category=Menu.CATEGORIES.breakfast)
 
         user = self.request.user.username
-        message = food.first().food
-        message = message if message else "There's no available {0}.".format(
-            category)
-        message = "<@{0}>, ```{1}```".format(user, message)
+        food = food.first().food if food else None
+        message = "{0} found this menu for {1}, {2}.".format(user,
+            category, food)
+        message = message if food else "The menu is empty.".
         return message, []
