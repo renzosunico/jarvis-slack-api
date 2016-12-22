@@ -67,5 +67,4 @@ class JarvisResponse(object):
 
     def send(self):
         """Post response to url."""
-        response = requests.post(url=self.url, data=self.response)
-        print response.__dict__
+        requests.post(url=self.url, data=json.dumps(self.response))

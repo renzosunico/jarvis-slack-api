@@ -40,8 +40,9 @@ class FoodServiceMixins(object):
 
         user = self.request.user.username
         message = food.first().food
-        message = message if message else "There's no available food."
-        message = "<@{0}>, {1}".format(user, message)
+        message = message if message else "There's no available {0}.".format(
+            category)
+        message = "<@{0}>, found this intel, ```{1}```".format(user, message)
         return message, []
 
     def get_relative_food(self, **kwargs):
@@ -51,18 +52,22 @@ class FoodServiceMixins(object):
         lunch_time = now.replace(hour=12, minute=30)
 
         if now < breakfast_time:
+            category = Menu.CATEGORIES.breakfast
             food = Menu.objects.filter(provided=now.date(),
-                category=Menu.CATEGORIES.breakfast)
+                category=category)
         elif now > breakfast_time and now < lunch_time:
+            category = Menu.CATEGORIES.lunch
             food = Menu.objects.filter(provided=now.date(),
-                category=Menu.CATEGORIES.lunch)
+                category=category)
         elif now > lunch_time:
+            category = Menu.CATEGORIES.breakfast
             tomorrow = now + timedelta(days=1)
             food = Menu.objects.filter(provided=tomorrow.date(),
                 category=Menu.CATEGORIES.breakfast)
 
         user = self.request.user.username
         message = food.first().food
-        message = message if message else "There's no available food."
-        message = "<@{0}>, {1}".format(user, message)
+        message = message if message else "There's no available {0}.".format(
+            category)
+        message = "<@{0}>, ```{1}```".format(user, message)
         return message, []
