@@ -42,7 +42,7 @@ class FoodServiceMixins(object):
         message = food.first().food
         message = message if message else "There's no available food."
         message = "<@{0}>, {1}".format(user, message)
-        return message, {}
+        return message, []
 
     def get_relative_food(self, **kwargs):
         """Returns food depending on time."""
@@ -65,4 +65,4 @@ class FoodServiceMixins(object):
         message = food.first().food
         message = message if message else "There's no available food."
         message = "<@{0}>, {1}".format(user, message)
-        return message, {}
+        return message, []

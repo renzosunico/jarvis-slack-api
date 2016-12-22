@@ -45,7 +45,7 @@ class Jarvis(FoodServiceMixins):
                 function_name = commands[command].get("function")
                 function_params = commands[command].get("params", {})
                 return function_name, function_params
-        return "default_handler", {}
+        return "default_handler", []
 
     def default_handler(self, **kwargs):
         """Default handler."""
@@ -56,12 +56,13 @@ class Jarvis(FoodServiceMixins):
 class JarvisResponse(object):
     """Jarvis response."""
 
-    def __init__(self, message, url, attachments={}, *args, **kwargs):
+    def __init__(self, message, url, attachments=[], *args, **kwargs):
         self.response = {
             'response_type': 'ephemeral',
             'text': message,
-            'attachments': attachments
         }
+        if attachments:
+            self.response['attachments'] = attachments
         self.url = url
 
     def send(self):
