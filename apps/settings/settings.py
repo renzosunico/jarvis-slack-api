@@ -99,7 +99,7 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'core.User'
 
-SLACK_TOKENS = env('SLACK_TOKENS').split("|")
+SLACK_TOKENS = env('SLACK_TOKENS', default="").split("|")
 
 DEFAULT_CHARSET = 'utf-8'
 
