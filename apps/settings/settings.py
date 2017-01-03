@@ -24,7 +24,8 @@ DJANGO_APPS = [
 APPS = [
     'core',
     'food',
-    'jarvis'
+    'jarvis',
+    'conversation'
 ]
 
 THIRD_PARTY_APPS = [

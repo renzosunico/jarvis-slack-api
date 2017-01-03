@@ -5,17 +5,20 @@ import requests
 from datetime import datetime
 from datetime import timedelta
 
+from django.contrib.auth import get_user_model
+
 from food.mixins import FoodServiceMixins
+from conversation.mixins import ConversationServiceMixin
+from conversation.models import Question, Answer
 
 from .utilities import clean_string
 
+User = get_user_model()
 
-class Jarvis(FoodServiceMixins):
+
+class Jarvis(FoodServiceMixins, ConversationServiceMixin):
     """This is the official brain of Jarvis."""
 
-    DEFAULTS = {
-        'invalid': "I don't quite understand that."
-    }
 
     def __init__(self, request, *args, **kwargs):
         """Initialize jarvis."""
@@ -30,8 +33,8 @@ class Jarvis(FoodServiceMixins):
         request = clean_string(request)
         handler, params = self.get_function(request)
         message, attachments = getattr(self, handler)(**params)
+        print message, attachments
         response_url = self.request.data.get("response_url")
-        print message
         response = JarvisResponse(message, response_url, attachments)
         response.send()
 
@@ -47,11 +50,6 @@ class Jarvis(FoodServiceMixins):
                 function_params = commands[command].get("params", {})
                 return function_name, function_params
         return "default_handler", {}
-
-    def default_handler(self, **kwargs):
-        """Default handler."""
-        user = self.request.user.username
-        return "@{0} I don't understand that.".format(user), {}
 
 
 class JarvisResponse(object):

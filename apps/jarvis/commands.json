@@ -19,5 +19,10 @@
         "keywords": ["food", "pagkain", "ulam"],
         "function": "get_relative_food",
         "requireds": ["ano", "what"]
+    },
+    "SAVE_ANSWER": {
+        "keywords": ["say"],
+        "function": "save_answer",
+        "requireds": ["say"]
     }
 }
