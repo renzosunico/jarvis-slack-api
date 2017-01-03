@@ -45,7 +45,7 @@ class Jarvis(FoodServiceMixins):
                 function_name = commands[command].get("function")
                 function_params = commands[command].get("params", {})
                 return function_name, function_params
-        return "default_handler", []
+        return "default_handler", {}
 
     def default_handler(self, **kwargs):
         """Default handler."""
