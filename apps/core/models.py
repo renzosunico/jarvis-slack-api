@@ -28,5 +28,5 @@ class SlackChannel(models.Model):
     """Representation of Channel."""
 
     id = models.CharField(max_length=255, unique=True, primary_key=True)
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     team = models.ForeignKey(SlackTeam, related_name="channels")
