@@ -31,6 +31,7 @@ class Jarvis(FoodServiceMixins):
         handler, params = self.get_function(request)
         message, attachments = getattr(self, handler)(**params)
         response_url = self.request.data.get("response_url")
+        print message
         response = JarvisResponse(message, response_url, attachments)
         response.send()
 
