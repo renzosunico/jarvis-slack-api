@@ -50,7 +50,7 @@ class Jarvis(FoodServiceMixins):
     def default_handler(self, **kwargs):
         """Default handler."""
         user = self.request.user.username
-        return "<@{0}> I don't understand that.".format(user), {}
+        return "@{0} I don't understand that.".format(user), {}
 
 
 class JarvisResponse(object):
